@@ -29,12 +29,20 @@ export class TransferComponent implements OnInit {
       accountName: ['', Validators.required],
       transferAmount: [
         '',
-        [Validators.required, Validators.pattern('^[0-9]+(.[0-9]{1,2})?$'), validation.transferAmount()],
+        [
+          Validators.required,
+          Validators.pattern('^[0-9]+(.[0-9]{1,2})?$'),
+          validation.transferAmount(),
+        ],
       ],
     });
   }
 
   ngOnInit(): void {
+    /**
+     * provided AWS endpoint  giving the cors policy issue
+     * getting the list of transactions from ransactionList service using avilable mockdata
+     */
     this.transactionList.getTransactionList().subscribe((res) => {
       this.listOfTransactions = [...res.data];
     });
@@ -43,12 +51,18 @@ export class TransferComponent implements OnInit {
     this.getcurrentBalance();
   }
 
+  /**
+   *
+   * @returns confirm method is for submitting the transfer form.
+   *
+   */
   confirm() {
-    console.log(this.form);
-    // this.insufficientFunds = false;
     const availableAmount = this.totalAmountLeft;
+    /**
+     * utilized mock object to update the tansactions list upon successfull transfer.
+     */
     let transferObj = {
-      categoryCode: '#12a580',
+      categoryCode: '#12a590',
       dates: {
         valueDate: Date.now(),
       },
@@ -66,13 +80,12 @@ export class TransferComponent implements OnInit {
       },
     };
     this.listOfTransactions.push(transferObj);
-    if(this.getcurrentBalance()< -500){
+    if (this.getcurrentBalance() < -500) {
       this.totalAmountLeft = availableAmount;
       this.transactionList.currentBalance = availableAmount;
       this.listOfTransactions.pop();
-    //  this.insufficientFunds = true;
-     return;
-    } 
+      return;
+    }
     if (this.form.status === 'INVALID' || this.form.untouched) {
       this.submitted = true;
       return;
@@ -81,6 +94,12 @@ export class TransferComponent implements OnInit {
       this.transactionList.openPopup.next(this.displayModal);
     }
   }
+  /**
+   *
+   * @returns below methos return the total avilable balance left on the user account
+   * utilized mock data CRDT - DBIT  transactions to find the total available balance
+   * upon each transaction available balance will get update.
+   */
   getcurrentBalance() {
     this.debitedAmount = 0;
     this.currentAmount = 0;
@@ -100,17 +119,22 @@ export class TransferComponent implements OnInit {
     }
     this.totalAmountLeft = this.currentAmount - this.debitedAmount;
     this.transactionList.currentBalance = this.totalAmountLeft;
-    return this.totalAmountLeft ;
+    return this.totalAmountLeft;
   }
-  sendTranfer(event) {
-    if(event){
-      // this.insufficientFunds = false;
+
+  /**
+   *
+   * @param  based on user action on connfirmation pop up will make or cancel the transfer
+   * @returns  form will reset will if transfer is done.
+   */
+  doTransfer(event) {
+    if (event) {
       this.transactionList.updatedTransaction.next(this.listOfTransactions);
-    } else{
+      this.form.reset();
+    } else {
       this.listOfTransactions.pop();
       this.getcurrentBalance();
       return;
     }
-
   }
 }

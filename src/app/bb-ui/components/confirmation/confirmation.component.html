@@ -1,6 +1,9 @@
 <!-- <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
-<p-dialog header="Riview Transfer" [(visible)]="display" [modal]="true" [style]="{width: '38vw'}" [baseZIndex]="10000"
+<p-dialog [(visible)]="display" [modal]="true" [style]="{width: '38vw'}" [baseZIndex]="10000"
     [draggable]="false" [resizable]="false">
+    <ng-template  pTemplate="header">
+      <span class="review-title"><b>Riview</b> Transfer</span>
+    </ng-template>
     <p class="p-m-0">
        <i>Are you ready to send out this transfer?</i>
     </p><br>

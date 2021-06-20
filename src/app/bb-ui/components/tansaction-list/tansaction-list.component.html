@@ -1,22 +1,38 @@
-<app-filter (inputChange)='filterTransactions($event)'></app-filter>
-<div *ngFor = 'let i of filteredData | upcomingToLatest'>
-    
-    <app-transaction-item >
-            <span [ngClass] = "i.transaction.creditDebitIndicator === 'CRDT'? 'credited-section' :'debited-section'" data-test-hook='transactionColour'>
-            </span>
-            <span class = 'date' data-test-hook='transactionDate'>
-                {{i.dates.valueDate | date}}
-            </span>
-            <span  id = 'merchant-name' data-test-hook='transactionMerchantName'>
-                <h5>{{i.merchant.name | titlecase}}</h5>
-            </span>
-            <span  id = 'transactionType' data-test-hook='transactionType'>
-                <p>{{i.transaction.type}}</p>
-            </span>
-            <span id = 'transactionAmount' [ngClass]= "i.transaction.creditDebitIndicator === 'CRDT'? 'credited': 'debited' " data-test-hook='transactionAmount'>
-                € {{i.transaction.creditDebitIndicator === 'CRDT'? i.transaction.amountCurrency.amount:- i.transaction.amountCurrency.amount}} 
-            </span>
-        </app-transaction-item>
-        <hr>
-
+<app-filter (inputChange)="filterTransactions($event)"></app-filter>
+<div *ngFor="let i of filteredData | upcomingToLatest">
+  <app-transaction-item>
+    <span
+      [ngClass]="
+        i.transaction.creditDebitIndicator === 'CRDT'
+          ? 'credited-section'
+          : 'debited-section'
+      "
+      data-test-hook="transactionColour"
+    >
+    </span>
+    <span class="date" data-test-hook="transactionDate">
+      {{ i.dates.valueDate | date: "MMM. d" }}
+    </span>
+    <span id="merchant-name" data-test-hook="transactionMerchantName">
+      <h5>{{ i.merchant.name | titlecase }}</h5>
+    </span>
+    <span id="transactionType" data-test-hook="transactionType">
+      <p>{{ i.transaction.type }}</p>
+    </span>
+    <span
+      id="transactionAmount"
+      [ngClass]="
+        i.transaction.creditDebitIndicator === 'CRDT' ? 'credited' : 'debited'
+      "
+      data-test-hook="transactionAmount"
+    >
+      €
+      {{
+        i.transaction.creditDebitIndicator === "CRDT"
+          ? i.transaction.amountCurrency.amount
+          : -i.transaction.amountCurrency.amount
+      }}
+    </span>
+  </app-transaction-item>
+  <hr />
 </div>

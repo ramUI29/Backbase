@@ -4,6 +4,7 @@
     background-color: coral !important;
     border-color: coral !important;
     margin-right: 0;
+    margin-left: 14rem;
 }
 .p-panel .p-panel-header{
     background: rgb(29, 159, 211) !important;
@@ -33,4 +34,8 @@
 #transactions{
     font-style: italic;
     font-size: 12px;
+}
+.pi-search{
+    font-size: 24px !important;
+    color: slategray;
 }
