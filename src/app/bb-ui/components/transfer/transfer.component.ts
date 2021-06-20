@@ -56,7 +56,8 @@ export class TransferComponent implements OnInit {
    * @returns confirm method is for submitting the transfer form.
    *
    */
-  confirm() {
+  confirm(event) {
+    console.log(event);
     const availableAmount = this.totalAmountLeft;
     /**
      * utilized mock object to update the tansactions list upon successfull transfer.

@@ -6,7 +6,7 @@ import {Pipe, PipeTransform} from "@angular/core";
 export class OrderByUpcomingToLatestPipe implements PipeTransform {
 
     transform(value: any): any {
-        let newVal = value.sort((a: any, b: any) => {
+        let newVal = value?.sort((a: any, b: any) => {
             let date1 = new Date(a.dates.valueDate);
             let date2 = new Date(b.dates.valueDate);
 

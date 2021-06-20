@@ -23,7 +23,7 @@ updatedTransaction = new Subject();
   getTransactionList(): Observable<any>{
     // const headers = new HttpHeaders()
     // .set("Content-Type", "application/json");
-    return  of(data);
+    return  of(this.tansactionList);
   // return this.http.get('https://r9vdzv10vd.execute-api.eu-central-1.amazonaws.com/dev/transactions', { headers})
 }
 }

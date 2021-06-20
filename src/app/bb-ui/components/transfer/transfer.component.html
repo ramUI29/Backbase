@@ -6,7 +6,7 @@
           <ng-template pTemplate="header">
             <span> <i class="pi pi-wallet"></i> <b>Make</b> Transfer</span>
           </ng-template>
-          <form [formGroup]="form" (ngSubmit)="confirm()">
+          <form [formGroup]="form" (ngSubmit)="confirm($event)">
             <div class="">
               <div class="row">
                 <label>From Account</label>

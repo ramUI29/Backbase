@@ -8,7 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class FilterComponent {
   @Output() inputChange: EventEmitter<any> = new EventEmitter();
 
-  onInputChange(event: Event): void {
-    this.inputChange.emit(event.target['value']);
+  onInputChange(event:Event): void {
+    this.inputChange.emit((<HTMLInputElement>event.target).value);
   }
 }
