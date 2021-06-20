@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+.btn-primary {
+    color: #fff;
+    background-color: coral !important;
+    border-color: coral !important;
+    margin-right: 0;
+}
+.p-panel .p-panel-header{
+    background: rgb(29, 159, 211) !important;
+    color: white !important;
+      
+}
+.lni{
+    height: 24px;
+    width: 24px;
+    // background-image: url('./assets/outline_search_black_24dp.png');
+}
+.p-dialog .p-dialog-header {
+    border-bottom: 1px solid lightgray !important;
+    height: 60px;
+  }
+  .p-dialog .p-dialog-footer {
+    border-top: 1px solid lightgray !important;
+    padding: 1rem !important;
+  }
+  .p-dialog .p-dialog-content {
+    overflow-y: unset;
+}
+.p-dialog.p-confirm-dialog .p-confirm-dialog-message {
+    margin-left: 1rem;
+    margin-top: -3rem;
+}
+#transactions{
+    font-style: italic;
+    font-size: 12px;
+}

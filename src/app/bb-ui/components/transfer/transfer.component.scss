@@ -1,0 +1,62 @@
+.transfer-section {
+  min-height: 500px;
+  background-image: url("../../../../assets/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: Georgia, serif !important;
+  .row {
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+  .transfer-card {
+    padding-top: 2rem;
+    padding-left: 2rem;
+  }
+  .transaction-card{
+    padding-top: 1rem;
+    padding-left: 2rem; 
+    font-family: Georgia, serif;
+
+  }
+  label{
+    font-size: 12px;
+    padding-bottom: 5px;
+  }
+  .amount-input{
+    font-size: 12px;
+    background-color: lightgray;
+    font-weight: 500;
+    color: black;
+  }
+  .account-name{
+    font-style: italic;
+    font-size: 12px;
+  }
+  .list{
+      overflow-y: scroll;
+      height: 370px;
+  }
+ 
+}
+.form-errors{
+  font-size: 12px;
+  color: red;
+}
+::ng-deep {
+  ng-scrollbar.scroll-event {
+    --scrollbar-size: 8px;
+    --scrollbar-thumb-color: gray;
+    --scrollbar-hover-size: 8px;
+    --scrollbar-track-color: rgba(0, 0, 0, 0.05);
+    --scrollbar-border-radius: 10px;
+
+    height: 350px;
+    max-height: 350px;
+    border-radius: 3px;
+    //border: 2px solid rgba(0, 0, 0, 0.05);
+  }
+
+}
+.pi-wallet, .pi-list{
+  padding-right: 10px;
+}

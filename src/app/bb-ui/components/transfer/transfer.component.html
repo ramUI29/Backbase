@@ -1,0 +1,101 @@
+<div class="transfer-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-4 transfer-card">
+        <p-panel class="panel-card">
+          <ng-template pTemplate="header">
+            <span> <i class="pi pi-wallet"></i> <b>Make</b> Transfer</span>
+          </ng-template>
+          <form [formGroup]="form" (ngSubmit)="confirm()">
+            <div class="">
+              <div class="row">
+                <label>From Account</label>
+                <div class="p-inputgroup">
+                  <input
+                    type="text"
+                    [disabled]="true"
+                    class="amount-input"
+                    pInputText
+                    placeholder="My Personal Account : € {{ totalAmountLeft| number : '1.2-2' }}"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <label>TO Account</label>
+                <div class="p-inputgroup">
+                  <input
+                    type="text"
+                    pInputText
+                    name="accountName"
+                    class="account-name"
+                    placeholder="type an account name"
+                    formControlName="accountName"
+                  />
+                </div>
+                <span
+                  class="form-errors"
+                  *ngIf="
+                    (form.controls.accountName.touched || submitted) &&
+                    form.controls.accountName.errors?.required
+                  "
+                >
+                  This filed is required</span
+                >
+              </div>
+              <div class="row">
+                <label>Amount</label>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon"
+                    ><i class="pi pi-euro"></i
+                  ></span>
+                  <input
+                    type="number"
+                    pInputText
+                    class="account-name"
+                    name="transferAmount"
+                    placeholder="specify the amount"
+                    formControlName="transferAmount"
+                  />
+                </div>
+                <span
+                  class="form-errors"
+                  *ngIf="
+                    (form.controls.transferAmount.touched || submitted) &&
+                    form.controls.transferAmount.errors?.required
+                  "
+                >
+                  This filed is required</span
+                >
+                <span
+                  class="form-errors"
+                  *ngIf="(insufficientFunds && form.controls.transferAmount.value) || form.controls.transferAmount.errors?.highamount">
+                  Insufficient Funds in Current Account
+                  </span
+                >
+              </div>
+            </div>
+            <app-submit-button class="submit-btn"></app-submit-button>
+          </form>
+        </p-panel>
+      </div>
+      <div class="col-8">
+        <p-panel class="transaction-card">
+          <ng-template pTemplate="header">
+            <span> <i class="pi pi-list"></i> Transactions<b> List</b></span>
+          </ng-template>
+          <div>
+            <ng-scrollbar class="scroll-event" thumbClass="white-scrollbars">
+              <app-tansaction-list></app-tansaction-list>
+            </ng-scrollbar>
+          </div>
+        </p-panel>
+      </div>
+    </div>
+  </div>
+</div>
+<app-confirmation
+  (confirmation)="sendTranfer($event)"
+  [display]="displayModal"
+  [account]="form.value.accountName"
+  [amount]="form.value.transferAmount"
+></app-confirmation>

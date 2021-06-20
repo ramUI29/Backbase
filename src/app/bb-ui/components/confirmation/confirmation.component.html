@@ -1,0 +1,21 @@
+<!-- <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
+<p-dialog header="Riview Transfer" [(visible)]="display" [modal]="true" [style]="{width: '38vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <p class="p-m-0">
+       <i>Are you ready to send out this transfer?</i>
+    </p><br>
+    <h5 class="">
+      It will be send to account:
+    </h5>
+     <p> {{account | titlecase}}</p>
+    <h5 class="">
+      With the amount of
+    </h5>
+    <p class="">
+      € {{amount}}
+    </p>
+        <ng-template pTemplate="footer">
+            <p-button  (click)="cancelTransfer()" [style]='{background: "white", color:"black", border:"1px solid Black"}' label="Close"></p-button>
+            <p-button (click)="sendTransfer()" [style]='{background: "coral",border:"1px solid coral"}' label="Send Transfer" id = ' tansfer'class="p-button-text"></p-button>
+        </ng-template>
+</p-dialog>
