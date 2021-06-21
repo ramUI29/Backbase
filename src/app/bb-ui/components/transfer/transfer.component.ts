@@ -57,7 +57,6 @@ export class TransferComponent implements OnInit {
    *
    */
   confirm(event) {
-    console.log(event);
     const availableAmount = this.totalAmountLeft;
     /**
      * utilized mock object to update the tansactions list upon successfull transfer.

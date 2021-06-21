@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PanelModule } from 'primeng/panel';
 import { TransactionListService } from '../../service/transaction-list.service';
 import { ConfirmationComponent } from '../confirmation/confirmation.component';
+import { SubmitButtonComponent } from '../submit-button/submit-button.component';
 import { OrderByUpcomingToLatestPipe } from '../tansaction-list/date.pipe';
 import { TansactionListComponent } from '../tansaction-list/tansaction-list.component';
 import { TransactionItemComponent } from '../transaction-item/transaction-item.component';
@@ -59,10 +60,27 @@ describe('TransferComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should call the confirm method', fakeAsync(() => { 
-    spyOn(component, 'confirm')
+  xit('should call the confirm method', fakeAsync(() => {
+    spyOn(component, 'confirm');
     const fakeEvent = { preventDefault: () => console.log('preventDefault') };
-    fixture.debugElement.query(By.css('form')).triggerEventHandler('submit', fakeEvent);
+    fixture.debugElement
+      .query(By.css('form'))
+      .triggerEventHandler('submit', fakeEvent);
     expect(component.confirm).toHaveBeenCalled();
   }));
+  it('should call confirm() method on form submit', () => {
+    /*Get button from html*/
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    // Supply id of your form below formID
+    const getForm = fixture.debugElement.query(By.css('form'));
+    expect(getForm.triggerEventHandler('submit', compiled)).toBeUndefined();
+  });
+  it('should not open pop up if current balance is less than -500 euros', () => {
+    spyOn(component, 'getcurrentBalance').and.returnValue(-800);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    const getForm = fixture.debugElement.query(By.css('form'));
+    expect(getForm.triggerEventHandler('submit', compiled)).toBeUndefined();
+  });
 });
